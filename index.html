@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Singularity: The Race to Superintelligence</title>
+<meta name="description" content="You run an AI lab racing rivals to build the first superintelligence, then gamble on whether it's aligned. A turn-based strategy game. Free, no ads, no timers.">
+<link rel="icon" href="assets/favicon.png">
+<!-- Open Graph -->
+<meta property="og:title" content="Singularity: The Race to Superintelligence">
+<meta property="og:description" content="Run an AI lab. Race rivals to superintelligence. Gamble on alignment at the end. 11 endings from ascension to ruin. Free, no ads, no timers.">
+<meta property="og:image" content="https://bazman88.github.io/assets/og.jpg">
+<meta property="og:url" content="https://bazman88.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #05070b;
+  --bg2: #0a0e16;
+  --panel: #0d1220;
+  --text: #d7dce6;
+  --dim: #8b93a5;
+  --gold: #E8C547;
+  --cyan: #59d3e8;
+  --line: rgba(232,197,71,.22);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, video { max-width: 100%; display: block; }
+a { color: var(--cyan); }
+
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 22px; }
+.narrow { max-width: 720px; }
+
+.kicker {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .32em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+h1, h2 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  color: #F3F5F9;
+  letter-spacing: .01em;
+  line-height: 1.08;
+  text-transform: uppercase;
+}
+h2 { font-size: clamp(30px, 5vw, 44px); margin-bottom: 18px; }
+p { margin-bottom: 18px; }
+.dim { color: var(--dim); }
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  padding: 0 0 56px;
+  background:
+    radial-gradient(1200px 500px at 50% -80px, rgba(232,197,71,.10), transparent 60%),
+    var(--bg);
+}
+.hero-art { position: relative; }
+.hero-art img { width: 100%; height: auto; }
+.hero-art::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 55%, var(--bg) 100%);
+}
+.hero-copy { text-align: center; margin-top: -8px; position: relative; z-index: 2; }
+.hero-copy h1 {
+  font-size: clamp(34px, 6vw, 58px);
+  max-width: 820px;
+  margin: 0 auto 18px;
+}
+.hero-copy h1 .g { color: var(--gold); }
+.tagline {
+  max-width: 640px;
+  margin: 0 auto 26px;
+  font-size: clamp(17px, 2.4vw, 20px);
+  color: var(--text);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px; }
+.chip {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  padding: 7px 14px;
+}
+.chip.gold { color: var(--gold); border-color: var(--line); }
+
+/* store buttons */
+.stores { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; }
+.btn-store {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #F3F5F9; color: #0a0e16;
+  border-radius: 12px;
+  padding: 12px 22px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .15s ease;
+  box-shadow: 0 4px 24px rgba(232,197,71,.18);
+}
+.btn-store:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(232,197,71,.30); }
+.btn-store svg { width: 26px; height: 26px; flex: none; }
+.btn-store .s { display: block; font-size: 11px; font-weight: 500; color: #4a4f5c; line-height: 1.1; text-align: left; }
+.btn-store .b { display: block; font-size: 17px; line-height: 1.2; text-align: left; }
+.btn-store.soon {
+  background: transparent; color: var(--dim);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: none; cursor: default;
+}
+.btn-store.soon .s { color: var(--gold); }
+.btn-store.soon .b { color: var(--text); }
+.btn-store.soon:hover { transform: none; box-shadow: none; }
+
+/* ---------- SECTIONS ---------- */
+section { padding: 72px 0; }
+section.alt { background: var(--bg2); }
+.rule { border: 0; border-top: 1px solid rgba(255,255,255,.06); }
+
+/* trailer + shots */
+.media-row { display: flex; gap: 36px; align-items: flex-start; }
+.phone {
+  flex: 0 0 300px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 26px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 12px 48px rgba(0,0,0,.6);
+}
+.phone video { width: 100%; aspect-ratio: 9/16; object-fit: cover; }
+.media-copy { flex: 1; padding-top: 8px; }
+
+.shots {
+  display: flex; gap: 14px;
+  overflow-x: auto;
+  padding: 8px 22px 18px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.shots img {
+  width: 240px;
+  height: auto;
+  flex: none;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  scroll-snap-align: start;
+}
+.shots-hint { text-align: center; font-size: 13px; color: var(--dim); margin-top: 4px; }
+
+/* feature banners */
+.banner { margin: 34px 0 0; }
+.banner img {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 16px 60px rgba(0,0,0,.5);
+}
+
+/* essay */
+.essay p { color: var(--text); }
+.essay .lead { font-size: 19px; color: #eef1f7; }
+blockquote {
+  border-left: 3px solid var(--gold);
+  padding: 4px 0 4px 20px;
+  margin: 26px 0;
+  color: #eef1f7;
+  font-size: 19px;
+}
+
+/* tech list */
+.tech li { margin-bottom: 14px; padding-left: 4px; }
+.tech { list-style: none; }
+.tech li::before { content: '▸'; color: var(--gold); margin-right: 12px; }
+.tech code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 15px;
+  background: rgba(255,255,255,.07);
+  border-radius: 6px;
+  padding: 2px 7px;
+  color: var(--cyan);
+}
+
+/* final cta */
+.cta-final { text-align: center; }
+.cta-final h2 { margin-bottom: 12px; }
+
+footer {
+  padding: 40px 0 60px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--dim);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+footer a { color: var(--dim); }
+
+@media (max-width: 760px) {
+  .media-row { flex-direction: column; align-items: center; }
+  .phone { flex-basis: auto; width: min(300px, 80vw); }
+  section { padding: 56px 0; }
+  .kicker { font-size: 11px; letter-spacing: .2em; }
+  .hero-copy h1 { font-size: clamp(30px, 8.6vw, 40px); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-art">
+    <img src="assets/hero.webp" alt="Singularity: The Race to Superintelligence" fetchpriority="high">
+  </div>
+  <div class="wrap hero-copy">
+    <div class="kicker">A turn-based strategy game</div>
+    <h1>Run the lab. Win the race.<br><span class="g">Survive what you build.</span></h1>
+    <p class="tagline">You run an AI lab racing rivals to build the first superintelligence. At the very end, you gamble on whether the thing you built is actually aligned. Rush it, and it goes rogue.</p>
+    <div class="chips">
+      <span class="chip gold">Free</span>
+      <span class="chip">No ads</span>
+      <span class="chip">No timers</span>
+      <span class="chip">Plays offline</span>
+      <span class="chip">One optional $4.99 unlock</span>
+    </div>
+    <div class="stores">
+      <a class="btn-store" href="https://play.google.com/store/apps/details?id=com.baz.singularity">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 3.5v17c0 .6.7 1 1.2.6l14.4-8.2c.5-.3.5-1 0-1.3L5.2 3.4C4.7 3 4 3.4 4 3.9z" fill="#0a0e16"/></svg>
+        <span><span class="s">Out now on</span><span class="b">Google Play</span></span>
+      </a>
+      <span class="btn-store soon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.54c-.03-2.9 2.37-4.29 2.48-4.36-1.35-1.97-3.45-2.24-4.2-2.27-1.79-.18-3.49 1.05-4.4 1.05-.9 0-2.3-1.03-3.79-1-1.95.03-3.74 1.13-4.74 2.87-2.02 3.5-.52 8.68 1.45 11.52.96 1.39 2.11 2.95 3.62 2.89 1.45-.06 2-.94 3.76-.94 1.75 0 2.25.94 3.79.91 1.57-.03 2.56-1.42 3.52-2.82 1.11-1.61 1.56-3.17 1.59-3.25-.04-.02-3.05-1.17-3.08-4.6zM14.16 4.1c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>
+        <span><span class="s">In review, days away</span><span class="b">App Store</span></span>
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRAILER + PITCH ============ -->
+<section>
+  <div class="wrap">
+    <div class="media-row">
+      <div class="phone">
+        <video src="assets/trailer.mp4" poster="assets/poster.webp" controls preload="none" playsinline></video>
+      </div>
+      <div class="media-copy">
+        <div class="kicker">The premise</div>
+        <h2>Every question we're asking about AI, as a game</h2>
+        <p>Found an AI lab. Hire researchers, chase breakthroughs, ship products to fund the next run. Rival labs are racing you, and they don't play fair.</p>
+        <p>Along the way the game keeps asking the uncomfortable questions: poach or protect? Cut safety research to move faster? Take the investor money and lose control of the board?</p>
+        <p>And when you finally build something smarter than yourself, you face the only question that matters: <strong style="color:#F3F5F9">is it aligned, or did you just end the world?</strong></p>
+        <p class="dim">A full campaign runs a few hours. Race mode compresses it into ~15 minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREENSHOTS ============ -->
+<section class="alt">
+  <div class="wrap" style="text-align:center">
+    <div class="kicker">Actual gameplay</div>
+    <h2>Numbers with a story attached</h2>
+  </div>
+  <div class="shots">
+    <img src="assets/ss_01_hub.webp" alt="The hub: your AI lab dashboard" loading="lazy">
+    <img src="assets/ss_02_research.webp" alt="The research tree" loading="lazy">
+    <img src="assets/ss_03_founder.webp" alt="Founder choice" loading="lazy">
+    <img src="assets/ss_04_rivals.webp" alt="Rival labs" loading="lazy">
+    <img src="assets/ss_05_sprint.webp" alt="The final sprint" loading="lazy">
+    <img src="assets/ss_06_ascension.webp" alt="Ascension ending" loading="lazy">
+    <img src="assets/ss_07_mira.webp" alt="Story events" loading="lazy">
+    <img src="assets/ss_08_srank.webp" alt="S-rank victory" loading="lazy">
+  </div>
+  <div class="shots-hint">← swipe →</div>
+</section>
+
+<!-- ============ FEATURE BANNERS ============ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">What's in it</div>
+    <h2>Six founders. Every choice counts. Eleven futures.</h2>
+    <p class="dim">Each founder plays differently, with their own strengths, flaws, and a personal story arc that follows you through the campaign. Your decisions push the world toward one of 11 endings, from ascension to ruin.</p>
+    <div class="banner"><img src="assets/banner_founders.webp" alt="Six founders, six ways to win" loading="lazy"></div>
+    <div class="banner"><img src="assets/banner_choices.webp" alt="Ascension or ruin: you decide" loading="lazy"></div>
+    <div class="banner"><img src="assets/banner_endings.webp" alt="Many futures, one is yours" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- ============ THE STORY ============ -->
+<section class="alt">
+  <div class="wrap narrow essay">
+    <div class="kicker">Why I built this</div>
+    <h2>A passion project about the questions nobody can answer yet</h2>
+
+    <p class="lead">I wanted to share a passion project I've been working on for the last six weeks. I'm a tech fan - I work in banking, but more on the technology side, and I've been closely following the latest developments around AI and all the debates about the impact it's having on society, both good and bad.</p>
+
+    <p>I got drawn into the moral questions. Is this technology going to be good for society in the long run, helping humanity prosper, or will it be harnessed for less altruistic purposes, ultimately doing harm to us and the world at large?</p>
+
+    <p>I'd heard arguments that it could lead to a severe underdevelopment of key learning skills: that as people adapt and rely on it more and more, we trade away critical creativity and reasoning for the convenience of instant solutions.</p>
+
+    <p>Then there are the questions about its impact on jobs, creativity, healthcare, research, and military and security technologies.</p>
+
+    <p>And the bigger ones - do we even understand how it works? Can we rely on large, powerful organisations with almost unlimited resources to develop this technology in a way that benefits humanity, or will it become a lever for higher profits and political power, as countries secure ever-greater stakes the more its power is realised and harnessed?</p>
+
+    <p>On top of all that, there's the tech war that seems to be kicking off everywhere between the most powerful movers in the industry.</p>
+
+    <p>It got me thinking. At the rate things are moving, where is this going to take us? And the big unknown… will it ultimately do us good, or harm? The potential for severe misuse in the wrong hands is real, and the technology keeps getting more powerful, partly just to keep the geopolitical balance in a country's favour.</p>
+
+    <blockquote>And then, finally, the thought came - all these questions we're trying to answer and solve for right now actually form the foundation of a very interesting game concept. At least to me.</blockquote>
+
+    <p>So I took these ideas and, for the first time, learned how to develop a game using AI to massively accelerate what I could accomplish on my own. The result is <strong style="color:#F3F5F9">Singularity: The Race to Superintelligence</strong>, a turn-based strategy game with a deterministic engine powering it. I used a combination of lots of tools and technologies (including rendering the visuals on my own graphics card), learning how to make soundtracks, design UIs, game mechanics and on and on. It took a hell of a lot of trial and error until I was happy with the result.</p>
+
+    <p>In it, you run your own AI lab, race rival labs to build the first superintelligence, make the moral calls along the way, and at the very end gamble on whether what you've built is actually aligned and within your control. The result can be anything from utopia to an apocalypse.</p>
+
+    <p>I'd really love to get feedback and thoughts on what I've created, and to hear your views on it.</p>
+    <p class="dim">Baz, July 2026</p>
+  </div>
+</section>
+
+<!-- ============ TECH NOTES ============ -->
+<section>
+  <div class="wrap narrow">
+    <div class="kicker">For the technically curious</div>
+    <h2>Under the hood</h2>
+    <ul class="tech">
+      <li>The entire game is a <strong>pure, deterministic TypeScript core</strong>: one function, <code>advanceTurn(state, command)</code>, with seeded RNG. A full campaign replays exactly from a seed plus the ordered player inputs.</li>
+      <li>That purity is the workhorse: <strong>398 unit tests</strong> run against the core, and a <strong>headless bot plays thousands of campaigns</strong> in seconds to sweep the difficulty curve after every balance change.</li>
+      <li>The UI is React Native / Expo: one codebase shipping to both stores, with over-the-air updates for anything that isn't native code.</li>
+      <li>The art was generated locally on my own GPU (SDXL on an RTX 3090) and hand-curated; the soundtrack shifts with the game's eras, down to a lone heartbeat on the final turn.</li>
+      <li>Built solo in about six weeks, using AI heavily as a force multiplier. Which felt fitting, given the subject.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="alt cta-final">
+  <div class="wrap">
+    <div class="kicker">The race is on</div>
+    <h2>How does your future end?</h2>
+    <p class="dim" style="max-width:520px;margin:0 auto 28px">Free to play the full campaign. No ads, no timers, no energy bars. One optional $4.99 unlock for four extra founders.</p>
+    <div class="stores">
+      <a class="btn-store" href="https://play.google.com/store/apps/details?id=com.baz.singularity">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 3.5v17c0 .6.7 1 1.2.6l14.4-8.2c.5-.3.5-1 0-1.3L5.2 3.4C4.7 3 4 3.4 4 3.9z" fill="#0a0e16"/></svg>
+        <span><span class="s">Out now on</span><span class="b">Google Play</span></span>
+      </a>
+      <span class="btn-store soon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.54c-.03-2.9 2.37-4.29 2.48-4.36-1.35-1.97-3.45-2.24-4.2-2.27-1.79-.18-3.49 1.05-4.4 1.05-.9 0-2.3-1.03-3.79-1-1.95.03-3.74 1.13-4.74 2.87-2.02 3.5-.52 8.68 1.45 11.52.96 1.39 2.11 2.95 3.62 2.89 1.45-.06 2-.94 3.76-.94 1.75 0 2.25.94 3.79.91 1.57-.03 2.56-1.42 3.52-2.82 1.11-1.61 1.56-3.17 1.59-3.25-.04-.02-3.05-1.17-3.08-4.6zM14.16 4.1c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>
+        <span><span class="s">In review, days away</span><span class="b">App Store</span></span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Singularity: The Race to Superintelligence · Velore Games · <a href="https://bazman88.github.io/singularity-privacy/">Privacy policy</a></p>
+  </div>
+</footer>
+
+<!-- Analytics: uncomment + set code after creating a free GoatCounter account (no cookies, GDPR-friendly)
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->
+</body>
+</html>
