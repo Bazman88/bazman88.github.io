@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I built a game about the current and potential future of AI</title>
+<meta name="description" content="A passion project: six weeks, one banking technologist, and a strategy game about the race to superintelligence and the alignment gamble at the end.">
+<link rel="icon" href="assets/favicon.png">
+<meta property="og:title" content="I built a game about the current and potential future of AI">
+<meta property="og:description" content="Six weeks, one builder, and a strategy game about the AI race and the alignment gamble at the end.">
+<meta property="og:image" content="https://bazman88.github.io/assets/og.jpg">
+<meta property="og:url" content="https://bazman88.github.io/story.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Orbitron:wght@700&family=Inter:wght@400;500;600&display=swap');
+:root {
+  --bg: #0a0e16;
+  --text: #d7dce6;
+  --bright: #eef1f7;
+  --dim: #8b93a5;
+  --gold: #E8C547;
+  --cyan: #59d3e8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img, video { max-width: 100%; display: block; }
+a { color: var(--cyan); }
+.wrap { max-width: 680px; margin: 0 auto; padding: 0 22px; }
+
+header.top { padding: 64px 0 8px; }
+.kicker {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .3em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+h1 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  color: var(--bright);
+  font-size: clamp(30px, 5.4vw, 44px);
+  line-height: 1.12;
+  text-transform: none;
+  margin-bottom: 14px;
+}
+.byline { color: var(--dim); font-size: 15px; margin-bottom: 40px; }
+p { margin-bottom: 20px; }
+.lead { font-size: 20px; color: var(--bright); }
+blockquote {
+  border-left: 3px solid var(--gold);
+  padding: 4px 0 4px 20px;
+  margin: 30px 0;
+  color: var(--bright);
+  font-size: 20px;
+}
+h2 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  color: var(--bright);
+  font-size: 26px;
+  margin: 46px 0 16px;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+.rule { border: 0; border-top: 1px solid rgba(255,255,255,.08); margin: 44px 0; }
+
+.shot {
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 16px 56px rgba(0,0,0,.5);
+  margin: 28px 0;
+}
+figcaption { font-size: 13px; color: var(--dim); text-align: center; margin-top: -18px; margin-bottom: 28px; }
+
+.tech { list-style: none; margin-bottom: 20px; }
+.tech li { margin-bottom: 12px; }
+.tech li::before { content: '▸'; color: var(--gold); margin-right: 10px; }
+.tech code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 15px;
+  background: rgba(255,255,255,.07);
+  border-radius: 6px; padding: 2px 7px;
+  color: var(--cyan);
+}
+
+.cta {
+  margin: 44px 0;
+  padding: 30px 26px;
+  border: 1px solid rgba(232,197,71,.25);
+  border-radius: 16px;
+  background: radial-gradient(120% 140% at 50% 0%, rgba(232,197,71,.08), transparent 70%);
+  text-align: center;
+}
+.cta .t { font-family: 'Anton', sans-serif; color: var(--bright); font-size: 22px; text-transform: uppercase; margin-bottom: 6px; }
+.cta .s { color: var(--dim); font-size: 15px; margin-bottom: 20px; }
+.stores { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.btn {
+  display: inline-block;
+  background: #F3F5F9; color: #0a0e16;
+  border-radius: 10px; padding: 12px 22px;
+  text-decoration: none; font-weight: 600; font-size: 16px;
+}
+.btn.soon { background: transparent; color: var(--dim); border: 1px solid rgba(255,255,255,.16); cursor: default; }
+.more { text-align: center; font-size: 15px; margin-top: 14px; }
+
+footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(--dim); border-top: 1px solid rgba(255,255,255,.06); margin-top: 56px; }
+footer a { color: var(--dim); }
+</style>
+</head>
+<body>
+
+<header class="top wrap">
+  <div class="kicker">A passion project</div>
+  <h1>I built a game about the current and potential future of AI. Here's what I did.</h1>
+  <div class="byline">Baz · July 2026 · six weeks, one keyboard, one very warm graphics card</div>
+</header>
+
+<article class="wrap">
+  <p class="lead">I wanted to share a passion project I've been working on for the last six weeks. I'm a tech fan - I work in banking, but more on the technology side, and I've been closely following the latest developments around AI and all the debates about the impact it's having on society, both good and bad.</p>
+
+  <p>I got drawn into the moral questions. Is this technology going to be good for society in the long run, helping humanity prosper, or will it be harnessed for less altruistic purposes, ultimately doing harm to us and the world at large?</p>
+
+  <p>I'd heard arguments that it could lead to a severe underdevelopment of key learning skills: that as people adapt and rely on it more and more, we trade away critical creativity and reasoning for the convenience of instant solutions.</p>
+
+  <p>Then there are the questions about its impact on jobs, creativity, healthcare, research, and military and security technologies.</p>
+
+  <p>And the bigger ones - do we even understand how it works? Can we rely on large, powerful organisations with almost unlimited resources to develop this technology in a way that benefits humanity, or will it become a lever for higher profits and political power, as countries secure ever-greater stakes the more its power is realised and harnessed?</p>
+
+  <p>On top of all that, there's the tech war that seems to be kicking off everywhere between the most powerful movers in the industry.</p>
+
+  <p>It got me thinking. At the rate things are moving, where is this going to take us? And the big unknown… will it ultimately do us good, or harm? The potential for severe misuse in the wrong hands is real, and the technology keeps getting more powerful, partly just to keep the geopolitical balance in a country's favour.</p>
+
+  <blockquote>And then, finally, the thought came - all these questions we're trying to answer and solve for right now actually form the foundation of a very interesting game concept. At least to me.</blockquote>
+
+  <p>So I took these ideas and, for the first time, learned how to develop a game using AI to massively accelerate what I could accomplish on my own. The result is <strong style="color:var(--bright)">Singularity: The Race to Superintelligence</strong>, a turn-based strategy game with a deterministic engine powering it. I used a combination of lots of tools and technologies (including rendering the visuals on my own graphics card), learning how to make soundtracks, design UIs, game mechanics and on and on. It took a hell of a lot of trial and error until I was happy with the result.</p>
+
+  <p>In it, you run your own AI lab, race rival labs to build the first superintelligence, make the moral calls along the way, and at the very end gamble on whether what you've built is actually aligned and within your control. The result can be anything from utopia to an apocalypse.</p>
+
+  <hr class="rule">
+
+  <h2>What it became</h2>
+
+  <p>A full campaign runs a few hours: hire researchers, climb a research tree toward the Agentic Learning Algorithm, ship products to fund the next push, and fend off three rival labs who buy, poach and sabotage their way forward. Story events keep asking the uncomfortable questions. At the end, you switch on the thing you built, and your alignment work decides whether you get ascension or ruin. Eleven endings. A Race mode compresses the whole arc into about 15 minutes.</p>
+
+  <figure>
+    <img class="shot" src="assets/banner_choices.webp" alt="Ascension or ruin: every choice tips the balance" loading="lazy">
+  </figure>
+
+  <h2>For the technically curious</h2>
+
+  <ul class="tech">
+    <li>The entire game is a <strong>pure, deterministic TypeScript core</strong>: one function, <code>advanceTurn(state, command)</code>, with seeded RNG. A full campaign replays exactly from a seed plus the ordered player inputs.</li>
+    <li>That purity is the workhorse: <strong>~400 unit tests</strong> run against the core, and a <strong>headless bot plays thousands of campaigns</strong> in seconds to sweep the difficulty curve after every balance change.</li>
+    <li>The UI is React Native / Expo: one codebase shipping to both stores, with over-the-air updates for anything that isn't native code.</li>
+    <li>The art was generated locally on my own GPU (SDXL on an RTX 3090) and hand-curated; the soundtrack shifts with the game's eras, down to a lone heartbeat on the final turn.</li>
+    <li>Built solo in about six weeks, using AI heavily as a force multiplier. Which felt fitting, given the subject.</li>
+  </ul>
+
+  <div class="cta">
+    <div class="t">Try it</div>
+    <div class="s">Free full campaign. No ads, no timers, plays offline. One optional $4.99 unlock for four extra founders.</div>
+    <div class="stores">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.baz.singularity">Google Play</a>
+      <span class="btn soon">App Store · in review, days away</span>
+    </div>
+    <div class="more"><a href="./">Screenshots, trailer and more detail on the main page ›</a></div>
+  </div>
+
+  <p>I'd really love to get feedback and thoughts on what I've created, and to hear your views on it.</p>
+  <p class="lead" style="font-size:17px">Baz</p>
+</article>
+
+<footer>
+  <div class="wrap">
+    <p>Singularity: The Race to Superintelligence · Velore Games · <a href="https://bazman88.github.io/singularity-privacy/">Privacy policy</a></p>
+  </div>
+</footer>
+</body>
+</html>
