@@ -67,19 +67,38 @@ p { margin-bottom: 18px; }
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
-  padding: 0 0 56px;
+  padding: 56px 0;
+  overflow: hidden;
   background:
     radial-gradient(1200px 500px at 50% -80px, rgba(232,197,71,.10), transparent 60%),
     var(--bg);
 }
-.hero-art { position: relative; }
-.hero-art img { width: 100%; height: auto; }
-.hero-art::after {
+/* Ambient backdrop: the art, deliberately blurred + dimmed, so the sharp framed
+   card floats over its own glow. */
+.hero-bg {
+  position: absolute; inset: -40px;
+  background: url('assets/hero.webp') center 30% / cover no-repeat;
+  filter: blur(42px) saturate(1.1) brightness(.55);
+  opacity: .5;
+}
+.hero-bg::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 55%, var(--bg) 100%);
+  background: linear-gradient(180deg, rgba(5,7,11,.55) 0%, rgba(5,7,11,.35) 40%, var(--bg) 100%);
 }
-.hero-copy { text-align: center; margin-top: -8px; position: relative; z-index: 2; }
+.hero-art {
+  position: relative; z-index: 2;
+  max-width: 880px;
+  margin: 0 auto 34px;
+  padding: 0 22px;
+}
+.hero-art img {
+  width: 100%; height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(232,197,71,.25);
+  box-shadow: 0 24px 80px rgba(0,0,0,.65);
+}
+.hero-copy { text-align: center; position: relative; z-index: 2; }
 .hero-copy h1 {
   font-size: clamp(34px, 6vw, 58px);
   max-width: 820px;
@@ -149,6 +168,7 @@ section.alt { background: var(--bg2); }
 .phone video { width: 100%; aspect-ratio: 9/16; object-fit: cover; }
 .media-copy { flex: 1; padding-top: 8px; }
 
+.shots-wrap { max-width: 1060px; margin: 0 auto; }
 .shots {
   display: flex; gap: 14px;
   overflow-x: auto;
@@ -225,6 +245,7 @@ footer a { color: var(--dim); }
 
 <!-- ============ HERO ============ -->
 <header class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-art">
     <img src="assets/hero.webp" alt="Singularity: The Race to Superintelligence" fetchpriority="high">
   </div>
@@ -277,6 +298,7 @@ footer a { color: var(--dim); }
     <div class="kicker">Actual gameplay</div>
     <h2>Numbers with a story attached</h2>
   </div>
+  <div class="shots-wrap">
   <div class="shots">
     <img src="assets/ss_01_hub.webp" alt="The hub: your AI lab dashboard" loading="lazy">
     <img src="assets/ss_02_research.webp" alt="The research tree" loading="lazy">
@@ -287,7 +309,8 @@ footer a { color: var(--dim); }
     <img src="assets/ss_07_mira.webp" alt="Story events" loading="lazy">
     <img src="assets/ss_08_srank.webp" alt="S-rank victory" loading="lazy">
   </div>
-  <div class="shots-hint">← swipe →</div>
+  <div class="shots-hint">← scroll →</div>
+  </div>
 </section>
 
 <!-- ============ FEATURE BANNERS ============ -->
