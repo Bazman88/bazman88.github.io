@@ -168,23 +168,50 @@ section.alt { background: var(--bg2); }
 .phone video { width: 100%; aspect-ratio: 9/16; object-fit: cover; }
 .media-copy { flex: 1; padding-top: 8px; }
 
-.shots-wrap { max-width: 1060px; margin: 0 auto; }
-.shots {
-  display: flex; gap: 14px;
-  overflow-x: auto;
-  padding: 8px 22px 18px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+/* Fanned gameplay showcase: four static wings + a rotating gold centerpiece.
+   Everything visible at a glance; only the center moves. */
+.stage { position: relative; height: 560px; max-width: 1000px; margin: 0 auto; }
+.ph {
+  position: absolute; top: 50%; left: 50%;
+  border-radius: 20px; overflow: hidden; background: #000;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 60px rgba(0,0,0,.65);
+  aspect-ratio: 640/1387;
 }
-.shots img {
-  width: 240px;
-  height: auto;
-  flex: none;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.10);
-  scroll-snap-align: start;
+.ph img { position: absolute; inset: 0; width: 100%; }
+.ph.heroPh {
+  width: 236px;
+  transform: translate(-50%,-50%);
+  z-index: 5;
+  border-color: rgba(232,197,71,.45);
 }
-.shots-hint { text-align: center; font-size: 13px; color: var(--dim); margin-top: 4px; }
+.heroPh img { opacity: 0; animation: phcyc 16s infinite; }
+@keyframes phcyc { 0%{opacity:0} 3%{opacity:1} 23%{opacity:1} 28%{opacity:0} 100%{opacity:0} }
+.heroPh img:nth-child(1) { animation-delay: 0s; }
+.heroPh img:nth-child(2) { animation-delay: 4s; }
+.heroPh img:nth-child(3) { animation-delay: 8s; }
+.heroPh img:nth-child(4) { animation-delay: 12s; }
+.ph.w { width: 190px; opacity: .92; }
+.ph.w1 { transform: translate(-50%,-50%) translateX(-250px) rotate(-5deg) scale(.9); z-index: 4; }
+.ph.w2 { transform: translate(-50%,-50%) translateX(250px) rotate(5deg) scale(.9); z-index: 4; }
+.ph.w3 { transform: translate(-50%,-50%) translateX(-470px) rotate(-9deg) scale(.78); z-index: 3; opacity: .7; }
+.ph.w4 { transform: translate(-50%,-50%) translateX(470px) rotate(9deg) scale(.78); z-index: 3; opacity: .7; }
+@media (max-width: 980px) {
+  .ph.w3, .ph.w4 { display: none; }
+  .ph.w1 { transform: translate(-50%,-50%) translateX(-27vw) rotate(-5deg) scale(.85); }
+  .ph.w2 { transform: translate(-50%,-50%) translateX(27vw) rotate(5deg) scale(.85); }
+}
+@media (max-width: 560px) {
+  .stage { height: 470px; }
+  .ph.heroPh { width: 200px; }
+  .ph.w { width: 150px; }
+  .ph.w1 { transform: translate(-50%,-50%) translateX(-31vw) rotate(-5deg) scale(.8); }
+  .ph.w2 { transform: translate(-50%,-50%) translateX(31vw) rotate(5deg) scale(.8); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heroPh img { animation: none; display: none; }
+  .heroPh img:first-child { display: block; opacity: 1; }
+}
 
 /* feature banners */
 .banner { margin: 34px 0 0; }
@@ -298,18 +325,17 @@ footer a { color: var(--dim); }
     <div class="kicker">Actual gameplay</div>
     <h2>Numbers with a story attached</h2>
   </div>
-  <div class="shots-wrap">
-  <div class="shots">
-    <img src="assets/ss_01_hub.webp" alt="The hub: your AI lab dashboard" loading="lazy">
-    <img src="assets/ss_02_research.webp" alt="The research tree" loading="lazy">
-    <img src="assets/ss_03_founder.webp" alt="Founder choice" loading="lazy">
-    <img src="assets/ss_04_rivals.webp" alt="Rival labs" loading="lazy">
-    <img src="assets/ss_05_sprint.webp" alt="The final sprint" loading="lazy">
-    <img src="assets/ss_06_ascension.webp" alt="Ascension ending" loading="lazy">
-    <img src="assets/ss_07_mira.webp" alt="Story events" loading="lazy">
-    <img src="assets/ss_08_srank.webp" alt="S-rank victory" loading="lazy">
-  </div>
-  <div class="shots-hint">← scroll →</div>
+  <div class="stage">
+    <div class="ph w w3"><img src="assets/ss_06_ascension.webp" alt="Ascension ending" loading="lazy"></div>
+    <div class="ph w w1"><img src="assets/ss_02_research.webp" alt="The research tree" loading="lazy"></div>
+    <div class="ph heroPh">
+      <img src="assets/ss_01_hub.webp" alt="The hub: your AI lab dashboard">
+      <img src="assets/ss_03_founder.webp" alt="Founder choice" loading="lazy">
+      <img src="assets/ss_05_sprint.webp" alt="The final sprint" loading="lazy">
+      <img src="assets/ss_07_mira.webp" alt="Story events" loading="lazy">
+    </div>
+    <div class="ph w w2"><img src="assets/ss_04_rivals.webp" alt="Rival labs" loading="lazy"></div>
+    <div class="ph w w4"><img src="assets/ss_08_srank.webp" alt="S-rank victory" loading="lazy"></div>
   </div>
 </section>
 
